@@ -1,0 +1,16 @@
+[Unit]
+Description=h2o - theptimized HTTP/1.x, HTTP/2 server
+Documentation=http://h2o.org/en/docs/
+After=network.target remote-fs.target nss-lookup.target
+
+[Service]
+Type=forking
+PIDFile=<%= node['h2o']['pid'] %>
+ExecStartPre=/usr/sbin/h2o -t -c <%= node['h2o']['dir'] %>/h2o.conf
+ExecStart=/usr/sbin/h2o -c <%= node['h2o']['dir'] %>/h2o.conf
+ExecReload=/bin/kill -s HUP $MAINPID
+ExecStop=/bin/kill -s QUIT $MAINPID
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
