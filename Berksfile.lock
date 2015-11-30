@@ -1,0 +1,12 @@
+DEPENDENCIES
+  build-essential
+    git: https://github.com/chef-cookbooks/build-essential.git
+    revision: 35174d52fe64f1203eceb79a93228a25f17119ad
+  h2o
+    path: .
+    metadata: true
+
+GRAPH
+  build-essential (2.2.4)
+  h2o (0.1.0)
+    build-essential (>= 0.0.0)

@@ -2,18 +2,20 @@
 # Recipe:: default
 
 include_recipe 'build-essential'
-package 'cmake'
+
 %w(
+  curl
+  unzip
   cmake
-  libssl-dev
+  libyaml-devel
   openssl-devel
 ).each { |name| package name }
 
 version = node['h2o']['version']
 cache_path = Chef::Config[:file_cache_path]
 
-remote_file "#{cache_path}/h2o-#{version}.tar.gz" do
-  source "https://api.github.com/repos/h2o/h2o/tarball/#{version}"
+remote_file "#{cache_path}/h2o-#{version}.zip" do
+  source node['h2o']['download_url']
   action :create_if_missing
 end
 
@@ -21,7 +23,7 @@ bash "expand h2o-#{version}" do
   not_if "test -d #{cache_path}/h2o-#{version}"
   code <<-CODE
     cd #{cache_path}
-    tar xvf h2o-#{version}.tar.gz
+    unzip h2o-#{version}.zip
   CODE
 end
 
