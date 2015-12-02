@@ -2,11 +2,11 @@
 # Recipe:: default
 
 include_recipe 'build-essential'
+include_recipe 'cmake::_source'
 
 %w(
   curl
   unzip
-  cmake
   libyaml-devel
   openssl-devel
 ).each { |name| package name }
