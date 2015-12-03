@@ -3,11 +3,7 @@
 
 case node['platform_family']
 when 'rhel', 'fedora'
-  include_recipe 'yum::default'
-
-  yum_repository 'h2o' do
-    description 'h2o Repository'
-    baseurl node['h2o']['repository']
-    action :create
+  remote_file '/etc/yum.repos.d/h2o.repo' do
+    source node['h2o']['repository']
   end
 end
