@@ -10,6 +10,7 @@ ExecStart=/usr/local/bin/h2o -m master -c <%= node['h2o']['dir'] %>/h2o.conf
 ExecReload=/bin/kill -s HUP $MAINPID
 ExecStop=/bin/kill -s QUIT $MAINPID
 PrivateTmp=true
+LimitNOFILE=infinity
 
 [Install]
 WantedBy=multi-user.target

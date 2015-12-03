@@ -6,8 +6,8 @@ hosts:
       "/":
         file.dir: /usr/share/h2o/html
 
-access-log: <%= node['h2o']['logdir'] %>/access-log
-error-log: <%= node['h2o']['logdir'] %>/error-log
+access-log: <%= node['h2o']['logdir'] %>/access.log
+error-log: <%= node['h2o']['logdir'] %>/error.log
 pid-file: <%= node['h2o']['pid'] %>
 user: <%= node['h2o']['user'] %>
-http2-reprioritize-blocking-assets: ON   # performance tuning option
+#http2-reprioritize-blocking-assets: ON   # performance tuning option
