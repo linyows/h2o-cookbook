@@ -1,0 +1,13 @@
+<%= node['h2o']['logdir'] %>/*.log {
+    daily
+    missingok
+    rotate 52
+    compress
+    delaycompress
+    notifempty
+    create 640 <%= node['h2o']['user'] %> <%= node['h2o']['user'] %>
+    sharedscripts
+    postrotate
+        [ -f <%= node['h2o']['pid'] %> ] && kill -USR1 `cat <%= node['h2o']['pid'] %>`
+    endscript
+}
