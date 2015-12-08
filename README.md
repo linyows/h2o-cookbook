@@ -3,7 +3,7 @@ H2O Cookbook
 
 Installs/configures [H2O][h2o].
 
-[![Supermarket](https://img.shields.io/cookbook/v/chef-sugar.svg?style=flat-square)][supermarket]
+[![Supermarket](https://img.shields.io/cookbook/v/h2o.svg?style=flat-square)][supermarket]
 [![Travis](https://img.shields.io/travis/linyows/h2o-cookbook.svg?style=flat-square)][travis]
 [![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)][license]
 
