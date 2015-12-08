@@ -4,4 +4,9 @@ gem 'berkshelf'
 
 group :test do
   gem 'serverspec'
+  gem 'foodcritic'
+end
+
+group :development do
+  gem 'chef'
 end
