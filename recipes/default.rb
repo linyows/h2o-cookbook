@@ -8,7 +8,7 @@ if node['h2o']['build']
 else
   include_recipe 'h2o::repository'
   package 'h2o' do
-    version "#{node['h2o']['version']}"
+    version node['h2o']['version']
     action :install
   end
 end

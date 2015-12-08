@@ -3,13 +3,13 @@
 
 default['h2o']['build'] = false
 
-version, pid, user = if node['h2o']['build']
+default['h2o']['version'], default['h2o']['pid'], default['h2o']['user'] = if node['h2o']['build']
     %w(1.5.4 /var/run/h2o.pid h2o)
   else
     %w(1.2.0-20.1 /var/run/h2o/h2o.pid nobody)
   end
 
-platform = case node['platform']
+default['h2o']['pkg_platform'] = case node['platform']
   when 'centos'
     'CentOS_7'
   when 'fedora'
@@ -18,18 +18,15 @@ platform = case node['platform']
     'ScientificLinux_7'
   end
 
-default['h2o']['version']            = version
-default['h2o']['pid']                = pid
-default['h2o']['user']               = user
 default['h2o']['conf_cookbook']      = 'h2o'
 default['h2o']['logdir']             = '/var/log/h2o'
 default['h2o']['default_html']       = true
 
 # package
-default['h2o']['repository']         = "http://download.opensuse.org/repositories/home:funzoneq/#{platform}/home:funzoneq.repo"
+default['h2o']['repository']         = "http://download.opensuse.org/repositories/home:funzoneq/#{node['h2o']['pkg_platform']}/home:funzoneq.repo"
 
 # source
-default['h2o']['download_url']       = "https://github.com/h2o/h2o/archive/v#{version}.zip"
+default['h2o']['download_url']       = "https://github.com/h2o/h2o/archive/v#{node['h2o']['version']}.zip"
 default['h2o']['dir']                = '/etc/h2o'
 default['h2o']['init_cookbook']      = 'h2o'
 default['h2o']['logrotate_cookbook'] = 'h2o'
