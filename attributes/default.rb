@@ -23,7 +23,15 @@ default['h2o']['logdir']             = '/var/log/h2o'
 default['h2o']['default_html']       = true
 
 # package
-default['h2o']['repository']         = "http://download.opensuse.org/repositories/home:funzoneq/#{node['h2o']['pkg_platform']}/home:funzoneq.repo"
+
+case node['platform_family']
+when 'rhel', 'fedora'
+  default['h2o']['repository'] = "http://download.opensuse.org/repositories/home:funzoneq/#{node['h2o']['pkg_platform']}/home:funzoneq.repo"
+when 'debian'
+  default['h2o']['repository'] = 'http://dl.bintray.com/tatsushid/h2o-deb'
+  default['h2o']['repository_key'] = 'https://bintray.com/user/downloadSubjectPublicKey?username=bintray'
+  default['h2o']['repository_distribution'] = "#{node['lsb']['codename']}-backports"
+end
 
 # source
 default['h2o']['download_url']       = "https://github.com/h2o/h2o/archive/v#{node['h2o']['version']}.zip"
