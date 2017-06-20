@@ -10,13 +10,13 @@ else
 
   group node['h2o']['group'] do
     system true
-  end if node['h2o']['group']
+  end if node['h2o']['group'] != 'nogroup'
 
   user node['h2o']['user'] do
     system true
     shell '/bin/false'
     home '/var/www'
-    gid node['h2o']['group'] if node['h2o']['group']
+    gid node['h2o']['group'] if node['h2o']['group'] != 'nogroup'
     comment 'Service user for h2o'
   end if node['h2o']['user'] != 'nobody'
 
