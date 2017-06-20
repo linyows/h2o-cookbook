@@ -1,13 +1,14 @@
 # Cookbook Name:: h2o
 # Recipe:: config
 
-if node['platform_family'] == 'rhel' && node['platform_version'].to_i >= 7
+if node['platform_family'] == 'rhel' && node['platform_version'].to_i >= 7 ||
+   node['platform_family'] == 'debian' && node['platform_version'].to_i >= 16
   execute 'systemctl daemon-reload for h2o' do
     command 'systemctl daemon-reload'
     action :nothing
   end
 
-  template '/usr/lib/systemd/system/h2o.service' do
+  template "#{node['h2o']['systemd_unit_dir']}/h2o.service" do
     source 'h2o.service.erb'
     owner 'root'
     group node['root_group']

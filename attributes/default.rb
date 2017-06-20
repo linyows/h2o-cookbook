@@ -22,6 +22,13 @@ default['h2o']['conf_cookbook']      = 'h2o'
 default['h2o']['logdir']             = '/var/log/h2o'
 default['h2o']['default_html']       = true
 
+case node['platform_family']
+when 'rhel', 'fedora'
+  default['h2o']['systemd_unit_dir'] = '/usr/lib/systemd/system'
+when 'debian'
+  default['h2o']['systemd_unit_dir'] = '/lib/systemd/system'
+end
+
 # package
 
 case node['platform_family']
