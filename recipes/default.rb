@@ -21,7 +21,7 @@ else
   end if node['h2o']['user'] != 'nobody'
 
   package 'h2o' do
-    version "#{node['h2o']['version']}"
+    version node['h2o']['version']
     action :install
   end
 end
