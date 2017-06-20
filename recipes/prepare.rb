@@ -13,9 +13,14 @@ directory node['h2o']['dir'] do
   mode '0755'
 end
 
+group node['h2o']['group'] do
+  system true
+end
+
 user node['h2o']['user'] do
   system true
   shell '/bin/false'
+  gid node['h2o']['group']
   home '/var/www'
   comment 'Service user for h2o'
 end

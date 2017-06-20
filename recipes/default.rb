@@ -7,6 +7,19 @@ if node['h2o']['build']
 
 else
   include_recipe 'h2o::repository'
+
+  group node['h2o']['group'] do
+    system true
+  end if node['h2o']['group']
+
+  user node['h2o']['user'] do
+    system true
+    shell '/bin/false'
+    home '/var/www'
+    gid node['h2o']['group'] if node['h2o']['group']
+    comment 'Service user for h2o'
+  end if node['h2o']['user'] != 'nobody'
+
   package 'h2o' do
     version "#{node['h2o']['version']}"
     action :install
