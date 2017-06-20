@@ -28,6 +28,7 @@ when 'rhel', 'fedora'
 when 'debian'
   default['h2o']['systemd_unit_dir'] = '/lib/systemd/system'
 end
+default['h2o']['systemd_private_tmp'] = true
 
 # package
 
