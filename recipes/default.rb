@@ -20,10 +20,7 @@ else
     comment 'Service user for h2o'
   end if node['h2o']['user'] != 'nobody'
 
-  package 'h2o' do
-    version node['h2o']['version']
-    action :install
-  end
+  package 'h2o'
 end
 
 include_recipe 'h2o::html' if node['h2o']['default_html']

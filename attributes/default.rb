@@ -3,10 +3,13 @@
 
 default['h2o']['build'] = false
 
-default['h2o']['version'], default['h2o']['pid'], default['h2o']['user'], default['h2o']['group'], default['h2o']['bin'] = if node['h2o']['build']
-    %w(1.5.4 /var/run/h2o.pid h2o h2o /usr/local/bin)
+default['h2o']['pid'], \
+default['h2o']['user'], \
+default['h2o']['group'], \
+default['h2o']['bin'] = if node['h2o']['build']
+    %w(/var/run/h2o.pid h2o h2o /usr/local/bin)
   else
-    %w(1.2.0-20.1 /var/run/h2o/h2o.pid nobody nogroup /usr/sbin)
+    %w(/var/run/h2o/h2o.pid nobody nogroup /usr/sbin)
   end
 
 default['h2o']['pkg_platform'] = case node['platform']
@@ -42,7 +45,9 @@ when 'debian'
 end
 
 # source
-default['h2o']['download_url']       = "https://github.com/h2o/h2o/archive/v#{node['h2o']['version']}.zip"
+default['h2o']['download_version']   = '2.2.5'
+default['h2o']['download_url']       = "https://github.com/h2o/h2o/archive/v#{node['h2o']['download_version']}.zip"
+default['h2o']['download_checksum']  = '1fbd2e06c2d3d9d8e844d64439513b1947684e0c09a65ddaa9e77a2af77791c0'
 default['h2o']['dir']                = '/etc/h2o'
 default['h2o']['init_cookbook']      = 'h2o'
 default['h2o']['logrotate_cookbook'] = 'h2o'

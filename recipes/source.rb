@@ -10,11 +10,12 @@ when 'debian'
   package %w[curl unzip cmake pkg-config libssl-dev zlib1g-dev]
 end
 
-version = node['h2o']['version']
+version = node['h2o']['download_version']
 cache_path = Chef::Config[:file_cache_path]
 
 remote_file "#{cache_path}/h2o-#{version}.zip" do
   source node['h2o']['download_url']
+  checksum node['h2o']['download_checksum']
   action :create_if_missing
 end
 
