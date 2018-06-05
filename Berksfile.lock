@@ -1,17 +1,16 @@
 DEPENDENCIES
-  build-essential
-    git: https://github.com/chef-cookbooks/build-essential.git
-    revision: 35174d52fe64f1203eceb79a93228a25f17119ad
-  cmake
-    git: https://github.com/phlipper/chef-cmake.git
-    revision: 85eba99819c4a938711cc5f6e809dc8159495488
   h2o
     path: .
     metadata: true
 
 GRAPH
-  build-essential (2.2.4)
-  cmake (0.3.0)
-  h2o (0.1.0)
+  build-essential (8.1.1)
+    mingw (>= 1.1)
+    seven_zip (>= 0.0.0)
+  h2o (1.0.0)
     build-essential (>= 0.0.0)
-    cmake (>= 0.0.0)
+  mingw (2.0.2)
+    seven_zip (>= 0.0.0)
+  seven_zip (3.0.0)
+    windows (>= 0.0.0)
+  windows (4.2.5)

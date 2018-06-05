@@ -2,7 +2,8 @@
 # Recipe:: config
 
 if node['platform_family'] == 'rhel' && node['platform_version'].to_i >= 7 ||
-   node['platform_family'] == 'debian' && node['platform_version'].to_i >= 16
+   node['platform'] == 'ubuntu' && node['platform_version'].to_i >= 16 ||
+   node['platform_family'] == 'debian'
   execute 'systemctl daemon-reload for h2o' do
     command 'systemctl daemon-reload'
     action :nothing
