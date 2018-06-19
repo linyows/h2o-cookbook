@@ -6,6 +6,7 @@ After=network.target remote-fs.target nss-lookup.target
 [Service]
 Type=simple
 PIDFile=<%= node['h2o']['pid'] %>
+ExecStartPre=<%= node['h2o']['bin'] %>/h2o -m master -c <%= node['h2o']['dir'] %>/h2o.conf -t
 ExecStart=<%= node['h2o']['bin'] %>/h2o -m master -c <%= node['h2o']['dir'] %>/h2o.conf
 ExecReload=/bin/kill -s HUP $MAINPID
 ExecStop=/bin/kill -s QUIT $MAINPID
