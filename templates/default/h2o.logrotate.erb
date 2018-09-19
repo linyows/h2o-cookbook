@@ -8,6 +8,6 @@
     create 640 <%= node['h2o']['user'] %> <%= node['h2o']['user'] %>
     sharedscripts
     postrotate
-        [ -f <%= node['h2o']['pid'] %> ] && kill -USR1 `cat <%= node['h2o']['pid'] %>`
+        [ -f <%= node['h2o']['pid'] %> ] && kill -HUP `cat <%= node['h2o']['pid'] %>`
     endscript
 }
